@@ -40,6 +40,7 @@ To use this project as a starting point for your own Node.js project, follow the
 4. Customize the error codes and messages in `config/error_codes.js`.
 5. Define your entity routes in the `routes/` folder.
 6. Modify or create new data models in the `models/` folder based on your MongoDB schema.
+7. Run the project on local using command as "node app.local.js".
 
 ## Contributors
 
