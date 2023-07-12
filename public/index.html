@@ -1,0 +1,62 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <link rel="shortcut icon" type="image/x-icon" href="">
+      <link rel="mask-icon" type="" href="" color="#111">
+      <title>TalentIQ - Service Up</title>
+      <style>
+         @import url(https://fonts.googleapis.com/css?family=Inconsolata);
+         html,
+         body {
+         background: rgb(22, 22, 22);
+         font-family: 'Inconsolata', sans-serif;
+         }
+         .wrap {
+         top: 50%;
+         left: 50%;
+         width: 400px;
+         height: 200px;
+         margin-left: -200px;
+         margin-top: -100px;
+         position: absolute;
+         }
+         code {
+         color: white;
+         }
+         span.blue {
+         color: #48beef;
+         }
+         span.comment {
+         color: #7f8c8d;
+         }
+         span.load {
+         color: #f39c12;
+         }
+      </style>
+      <script>
+         window.console = window.console || function(t) {};
+      </script>
+      <script>
+         if (document.location.search.match(/type=embed/gi)) {
+           window.parent.postMessage("resize", "*");
+         }
+      </script>
+   </head>
+   <body translate="no">
+      <div class="wrap">
+         <div class="404">
+            <pre><code>
+      (<span class="blue">function</span>( serviceRunning ) {
+           <span class="blue">function</span> launch() {
+              <span class="blue">if</span>( serviceRunning ) {
+                  <span class="blue">return</span> "Service is up!!";
+              }
+              <span class="comment">//TODO</span>
+        }
+      window.addEventListner( <span class="load">'load'</span>, launch );
+      }( <span class="blue">true</span> ));
+    </code></pre>
+         </div>
+      </div>
+   </body>
+</html>
