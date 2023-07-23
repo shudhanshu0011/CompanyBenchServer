@@ -22,12 +22,22 @@ module.exports = {
         read_all_failed: {code: 'CB-user-003', message: 'Failed fetch user(s)'},
         read_failed: {code: 'CB-user-004', message: 'Failed fetch user'},
       },
+
+      /* The `job` property is defining an object within the `module.exports` object. This object
+      contains four properties: `create_failed`, `update_failed`, `read_all_failed`, and
+      `read_failed`. Each property is an object itself, with two properties: `code` and `message`.
+      These properties store error codes and error messages related to job operations in a system. */
       job: {
         create_failed: {code: 'CB-job-001', message: 'Failed to Save New job'},
         update_failed: {code: 'CB-job-002', message: 'Failed to Update job'},
         read_all_failed: {code: 'CB-job-003', message: 'Failed fetch job(s)'},
         read_failed: {code: 'CB-job-004', message: 'Failed fetch job'},
       },
+      /* The `candidate: {` line is defining an object within the `module.exports` object. This object
+      contains four properties: `create_failed`, `update_failed`, `read_all_failed`, and
+      `read_failed`. Each property is an object itself, with two properties: `code` and `message`.
+      These properties store error codes and error messages related to candidate operations in a
+      system. */
       candidate: {
         create_failed: {code: 'CB-candidate-001', message: 'Failed to Save New candidate'},
         update_failed: {code: 'CB-candidate-002', message: 'Failed to Update candidate'},
