@@ -4,6 +4,9 @@ const service_config = require('../config/service');
 const error_config = require('../config/error_codes');
 const logger_helper = require('../helpers/logger');
 
+
+/* The code block is a middleware function that connects to a MongoDB database based on the value of
+the `ref_id` variable. */
 module.exports.connect = (req, res, next) => {
   let tr_guid = req.headers.transaction_guid || '';
   let ref_id = req.headers.service_ref || req.query.service_ref || '';
