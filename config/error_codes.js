@@ -21,5 +21,17 @@ module.exports = {
         update_failed: {code: 'CB-user-002', message: 'Failed to Update user'},
         read_all_failed: {code: 'CB-user-003', message: 'Failed fetch user(s)'},
         read_failed: {code: 'CB-user-004', message: 'Failed fetch user'},
+      },
+      job: {
+        create_failed: {code: 'CB-job-001', message: 'Failed to Save New job'},
+        update_failed: {code: 'CB-job-002', message: 'Failed to Update job'},
+        read_all_failed: {code: 'CB-job-003', message: 'Failed fetch job(s)'},
+        read_failed: {code: 'CB-job-004', message: 'Failed fetch job'},
+      },
+      candidate: {
+        create_failed: {code: 'CB-candidate-001', message: 'Failed to Save New candidate'},
+        update_failed: {code: 'CB-candidate-002', message: 'Failed to Update candidate'},
+        read_all_failed: {code: 'CB-candidate-003', message: 'Failed fetch candidate(s)'},
+        read_failed: {code: 'CB-candidate-004', message: 'Failed fetch candidate'},
       }
 };
