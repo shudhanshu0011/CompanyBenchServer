@@ -22,6 +22,8 @@ app.use(express.static(path.join(__dirname,'public')))
 // Routes [Replace by entity name]
 app.use('/v1/customer', require('./routes/customer'));
 
+app.use('/v1/user', require('./routes/user'));
+
 app.get('/', (req,res)=> {
 	res.sendFile(path.join(__dirname,"public" + req.url));
 });

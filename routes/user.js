@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
 
-	let _user_json = new userModel(req.body.user) // TODO populate user json
+	let _user_json = new userModel(req.body) // TODO populate user json
 	_user_json.guid = service_helper.generate_guid()
 
 	LOGGER.log(tr_guid, ref_id,'[user Controller] create()','_user_json :: ' + JSON.stringify(_user_json))
@@ -45,7 +45,6 @@ router.post("/:guid", async (req, res) => {
 	const ref_id = req.headers.service_ref;
 	const user_guid = req.params.guid
 	let user_json = req.body.user
-
 	userModel.updateOne(	{guid:user_guid},
 							user_json // TODO populate user json
                       	).then(_user_update_res=>{
