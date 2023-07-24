@@ -6,6 +6,9 @@ const service_helper 	      = require('../helpers/service')
 const validation_helper 		= require('../helpers/validation')
 const LOGGER 	              = require('../helpers/logger');
 
+
+/* The code is defining a Mongoose schema for a "candidate" object. The schema specifies the structure
+and data types of the candidate object. */
 const candidateSchema = new mongoose.Schema({
   guid: {
     type: String,
@@ -13,7 +16,9 @@ const candidateSchema = new mongoose.Schema({
     lowercase: true,
     unique: true,
   },
-  name: String,
+  candidateId: Number,
+  firstName: String,
+  lastName: String,
   email: String,
   address:{
     street: String,
@@ -22,7 +27,19 @@ const candidateSchema = new mongoose.Schema({
     country: String,
     pinCode: Number
   },
-  mobile: Number
+  mobile: Number,
+  skill: Array,
+  totalExp: Number,
+  summary: String,
+  hourlyPrice: Number,
+  certifications: Array,
+  projects: Array,
+  designation: String,
+  status: String,
+  createdAt: Date,
+  uploadPhoto: Boolean,
+  uplaodPhoto: Boolean
+
 }, {timestamps: true});
 
 const candidate = mongoose.model("candidate", candidateSchema);

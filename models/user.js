@@ -18,6 +18,19 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     unique: true,
   },
+  userId: Number,
+  email: String,
+  password: String,
+  userType: String,
+  firstName: String,
+  lastName: String,
+  isEmailVerified: Boolean,
+  isActive: Boolean,
+  userSource: String,
+  createdAt: Date,
+  availability: Boolean,
+  mobile: Number,
+  company:String
 }, {timestamps: true});
 
 const user = mongoose.model("user", userSchema);
