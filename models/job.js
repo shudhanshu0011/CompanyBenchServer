@@ -18,17 +18,36 @@ const jobSchema = new mongoose.Schema({
   },
   company: String,
   duration: Number,
-  skill: [String],
-  jobHeading: String,
+  skill: {
+    type: [String],
+    required: true,
+  }
+  jobHeading:{
+    type: String,
+    required: true,
+  },
   location: [String],
   openPosition: Number,
-  experienceLevel: Number,
-  startdate: Date,
-  hourlyPrice: Number,
-  description: String,
+  experienceLevel:{
+    type: Number,
+    required: true
+  },
+  startdate:{
+    type:Date,
+    default: new Date(),
+    required: true 
+  },
+  hourlyPrice:{
+    type: Number,
+    required: true
+  },
   jobStatus: String,
   clientId: Number,
-  userSfId: String
+  userSfId: String,
+  description:{
+    type: String,
+    required: true
+  }
 }, {timestamps: true});
 
 const job = mongoose.model("job", jobSchema);
