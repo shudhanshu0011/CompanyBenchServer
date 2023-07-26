@@ -16,6 +16,19 @@ const jobSchema = new mongoose.Schema({
     lowercase: true,
     unique: true,
   },
+  company: String,
+  duration: Number,
+  skill: [String],
+  jobHeading: String,
+  location: [String],
+  openPosition: Number,
+  experienceLevel: Number,
+  startdate: Date,
+  hourlyPrice: Number,
+  description: String,
+  jobStatus: String,
+  clientId: Number,
+  userSfId: String
 }, {timestamps: true});
 
 const job = mongoose.model("job", jobSchema);

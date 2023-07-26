@@ -24,6 +24,8 @@ app.use('/v1/customer', require('./routes/customer'));
 
 app.use('/v1/user', require('./routes/user'));
 
+app.use('/v1/job', require('./routes/job'));
+
 app.get('/', (req,res)=> {
 	res.sendFile(path.join(__dirname,"public" + req.url));
 });

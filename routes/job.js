@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
 
-	let _job_json = new jobModel(req.body.job) // TODO populate job json
+	let _job_json = new jobModel(req.body) // TODO populate job json
 	_job_json.guid = service_helper.generate_guid()
 
 	LOGGER.log(tr_guid, ref_id,'[job Controller] create()','_job_json :: ' + JSON.stringify(_job_json))
