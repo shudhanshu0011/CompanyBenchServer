@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "tiq-devops-codegen-1",
+			"path": "../../../devops/tiq-devops-codegen-1"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../reactjs/cb-react-web-app"
+		}
+	],
+	"settings": {
+		"docwriter.style": "Auto-detect",
+		"editor.formatOnSave": true
+	}
+}

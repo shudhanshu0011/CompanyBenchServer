@@ -43,5 +43,27 @@ module.exports = {
         update_failed: {code: 'CB-candidate-002', message: 'Failed to Update candidate'},
         read_all_failed: {code: 'CB-candidate-003', message: 'Failed fetch candidate(s)'},
         read_failed: {code: 'CB-candidate-004', message: 'Failed fetch candidate'},
-      }
+      },
+       /* The `technology: {` line is defining an object within the `module.exports` object. This object
+      contains four properties: `create_failed`, `update_failed`, `read_all_failed`, and
+      `read_failed`. Each property is an object itself, with two properties: `code` and `message`.
+      These properties store error codes and error messages related to candidate operations in a
+      system. */
+      technology: {
+        create_failed: {code: 'TIQ-technology-001', message: 'Failed to Save New technology'},
+        update_failed: {code: 'TIQ-technology-002', message: 'Failed to Update technology'},
+        read_all_failed: {code: 'TIQ-technology-003', message: 'Failed fetch technology(s)'},
+        read_failed: {code: 'TIQ-technology-004', message: 'Failed fetch technology'},
+      },
+      /* The `joblocation: {` line is defining an object within the `module.exports` object. This object
+      contains four properties: `create_failed`, `update_failed`, `read_all_failed`, and
+      `read_failed`. Each property is an object itself, with two properties: `code` and `message`.
+      These properties store error codes and error messages related to candidate operations in a
+      system. */
+      joblocation: {
+        create_failed: {code: 'TIQ-joblocation-001', message: 'Failed to Save New joblocation'},
+        update_failed: {code: 'TIQ-joblocation-002', message: 'Failed to Update joblocation'},
+        read_all_failed: {code: 'TIQ-joblocation-003', message: 'Failed fetch joblocation(s)'},
+        read_failed: {code: 'TIQ-joblocation-004', message: 'Failed fetch joblocation'},
+      },
 };
