@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const service_config 	= require('../config/service')
+const service_config = require('../config/service')
 
-const service_helper 	      = require('../helpers/service')
-const validation_helper 		= require('../helpers/validation')
-const LOGGER 	              = require('../helpers/logger');
+const service_helper = require('../helpers/service')
+const validation_helper = require('../helpers/validation')
+const LOGGER = require('../helpers/logger');
 
 const joblocationSchema = new mongoose.Schema({
   guid: {
@@ -13,7 +13,14 @@ const joblocationSchema = new mongoose.Schema({
     lowercase: true,
     unique: true,
   },
-}, {timestamps: true});
+  cityId: Number,
+  cityName: String,
+  cityState: String,
+  countryName: String,
+  language: String,
+  symbol: String,
+  currencyCode: String
+}, { timestamps: true });
 
 const joblocation = mongoose.model("joblocation", joblocationSchema);
 

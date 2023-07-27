@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const service_config 	= require('../config/service')
+const service_config = require('../config/service')
 
-const service_helper 	      = require('../helpers/service')
-const validation_helper 		= require('../helpers/validation')
-const LOGGER 	              = require('../helpers/logger');
+const service_helper = require('../helpers/service')
+const validation_helper = require('../helpers/validation')
+const LOGGER = require('../helpers/logger');
 
 
 /* The code `const jobSchema = new mongoose.Schema({ ... }, {timestamps: true});` is defining a schema
@@ -21,34 +21,34 @@ const jobSchema = new mongoose.Schema({
   skill: {
     type: [String],
     required: true,
-  }
-  jobHeading:{
+  },
+  jobHeading: {
     type: String,
     required: true,
   },
   location: [String],
   openPosition: Number,
-  experienceLevel:{
+  experienceLevel: {
     type: Number,
     required: true
   },
-  startdate:{
-    type:Date,
+  startdate: {
+    type: Date,
     default: new Date(),
-    required: true 
+    required: true
   },
-  hourlyPrice:{
+  hourlyPrice: {
     type: Number,
     required: true
   },
   jobStatus: String,
   clientId: Number,
   userSfId: String,
-  description:{
+  description: {
     type: String,
     required: true
   }
-}, {timestamps: true});
+}, { timestamps: true });
 
 const job = mongoose.model("job", jobSchema);
 
