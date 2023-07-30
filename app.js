@@ -30,6 +30,8 @@ app.use('/v1/joblocation', require('./routes/joblocation'));
 
 app.use('/v1/technology', require('./routes/technology'));
 
+app.use('/v1/candidate', require('./routes/candidate'));
+
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, "public" + req.url));
 });

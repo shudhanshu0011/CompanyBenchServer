@@ -18,6 +18,7 @@ const candidateSchema = new mongoose.Schema({
   },
   clientId: Number,
   jobId: Number,
+  userSfId: Number,
   candidateId: Number,
   vendorId: Number,
   firstName: {
@@ -54,7 +55,7 @@ const candidateSchema = new mongoose.Schema({
   inviteStatus: String,
   createdAt: Date,
   uploadPhoto: Boolean,
-  uplaodPhoto: Boolean
+  uplaodResume: Boolean
 
 }, { timestamps: true });
 
