@@ -104,6 +104,24 @@ router.get("/status/:statuscd", async (req, res) => {
 	})
 });
 
+router.get("/technology/:techId", async (req, res) => {
+	const tr_guid = req.headers.transaction_guid;
+	const ref_id = req.headers.service_ref;
+
+	candidateModel.find({
+		skill: {
+			$all: [
+				"5,117"]
+		}
+	}).then(_candidate_find_res => {
+		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByStatus()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
+		res.send(service_helper.success_res(tr_guid, ref_id, { candidates: _candidate_find_res }));
+	}).catch(_candidate_find_err => {
+		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findByStatus()', error_config.candidate.read_all_failed.code, _candidate_find_err)
+		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_all_failed));
+	})
+});
+
 // -- Fetch existing candidate by Guid
 // JSON Response
 // {
