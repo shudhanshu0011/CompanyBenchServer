@@ -1,4 +1,4 @@
-# tiq-node-be-sample-1
+# cb-node-web-api-service
 
 This repository serves as a sample project that can be used as a reference for defining the project structure of future Node.js projects. It includes various components such as configuration files, error codes, entity routes, and data models based on MongoDB schema.
 
@@ -40,7 +40,9 @@ To use this project as a starting point for your own Node.js project, follow the
 4. Customize the error codes and messages in `config/error_codes.js`.
 5. Define your entity routes in the `routes/` folder.
 6. Modify or create new data models in the `models/` folder based on your MongoDB schema.
+7. Run the project on local using command as "node app.local.js".
 
 ## Contributors
 
 - [Piyush Agarwal](https://github.com/piyushcompanybench) - Initial author
+- [Abhishek Bhardwaj](https://github.com/cgabhishek)
