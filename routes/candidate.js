@@ -59,25 +59,7 @@ router.post("/:guid", async (req, res) => {
 	})
 });
 
-// -- Fetch all existing candidate(s)
-// JSON Response
-// {
-//     "success": true,
-//     "transaction_guid": "c5268dce-ec9e-487b-93ef-776c470014b4",
-//     "service_ref": "ac-970ce9a8",
-//     "data": {
-//         "candidates": [
-//             {
-//                 "_id": "638051314e60f00e020c5e45",
-//                 "guid": "1d39b4d0-0446-4f9d-a905-8de9363a2f01",
-//                 "createdAt": "2022-11-25T05:22:57.694Z",
-//                 "updatedAt": "2022-11-25T05:22:57.694Z",
-//                 "__v": 0
-//             },
-// 						...
-//         ]
-//     }
-// }
+
 router.get("/", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
@@ -109,35 +91,18 @@ router.get("/technology/:techId", async (req, res) => {
 	const ref_id = req.headers.service_ref;
 
 	candidateModel.find({
-		skill: {
-			$all: [
-				"5,117"]
-		}
-	}).then(_candidate_find_res => {
-		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByStatus()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
+		skill: { "$in": [req.params.techId] }
+	}
+	).then(_candidate_find_res => {
+		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findBytechId()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
 		res.send(service_helper.success_res(tr_guid, ref_id, { candidates: _candidate_find_res }));
 	}).catch(_candidate_find_err => {
-		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findByStatus()', error_config.candidate.read_all_failed.code, _candidate_find_err)
+		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findBytechId()', error_config.candidate.read_all_failed.code, _candidate_find_err)
 		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_all_failed));
 	})
 });
 
-// -- Fetch existing candidate by Guid
-// JSON Response
-// {
-//     "success": true,
-//     "transaction_guid": "c5268dce-ec9e-487b-93ef-776c470014b4",
-//     "service_ref": "ac-970ce9a8",
-//     "data": {
-//         "candidate": {
-//             "_id": "638051314e60f00e020c5e45",
-//             "guid": "1d39b4d0-0446-4f9d-a905-8de9363a2f01",
-//             "createdAt": "2022-11-25T05:22:57.694Z",
-//             "updatedAt": "2022-11-25T05:22:57.694Z",
-//             "__v": 0
-//         }
-//     }
-// }
+
 router.get("/:guid", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
@@ -156,10 +121,23 @@ router.get("/vendor/:vendorId", async (req, res) => {
 	const ref_id = req.headers.service_ref;
 
 	candidateModel.findOne({ vendorId: req.params.vendorId }).then(_candidate_find_res => {
-		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByGuid()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
+		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByvendorId()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
 		res.send(service_helper.success_res(tr_guid, ref_id, { candidate: _candidate_find_res }));
 	}).catch(_candidate_find_err => {
-		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findByGuid()', error_config.candidate.read_failed.code, _candidate_find_err)
+		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findByvendorId()', error_config.candidate.read_failed.code, _candidate_find_err)
+		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_failed));
+	})
+});
+
+router.get("/:id", async (req, res) => {
+	const tr_guid = req.headers.transaction_guid;
+	const ref_id = req.headers.service_ref;
+
+	candidateModel.findOne({ candidateId: req.params.id }).then(_candidate_find_res => {
+		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findBycandidateId()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
+		res.send(service_helper.success_res(tr_guid, ref_id, { candidate: _candidate_find_res }));
+	}).catch(_candidate_find_err => {
+		LOGGER.error(tr_guid, ref_id, '[candidate Controller] candidateId()', error_config.candidate.read_failed.code, _candidate_find_err)
 		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_failed));
 	})
 });
