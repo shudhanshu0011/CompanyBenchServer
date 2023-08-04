@@ -26,6 +26,8 @@ app.use('/v1/user', require('./routes/user'));
 
 app.use('/v1/job', require('./routes/job'));
 
+app.use('/v1/jobstatus', require('./routes/jobstatus'));
+
 app.use('/v1/joblocation', require('./routes/joblocation'));
 
 app.use('/v1/technology', require('./routes/technology'));
