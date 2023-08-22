@@ -22,6 +22,13 @@ const joblocationSchema = new mongoose.Schema({
   currencyCode: String
 }, { timestamps: true });
 
+joblocationSchema.set('toJSON', {
+  transform: function (doc, ret, opt) {
+    delete ret['_id']
+    return ret
+  }
+})
+
 const joblocation = mongoose.model("joblocation", joblocationSchema);
 
 module.exports = joblocation;

@@ -18,6 +18,13 @@ const technologySchema = new mongoose.Schema({
   counter: Number
 }, { timestamps: true });
 
+technologySchema.set('toJSON', {
+  transform: function (doc, ret, opt) {
+    delete ret['_id']
+    return ret
+  }
+})
+
 const technology = mongoose.model("technology", technologySchema);
 
 module.exports = technology;

@@ -59,6 +59,13 @@ const candidateSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
+candidateSchema.set('toJSON', {
+  transform: function (doc, ret, opt) {
+    delete ret['_id']
+    return ret
+  }
+})
+
 const candidate = mongoose.model("candidate", candidateSchema);
 
 module.exports = candidate;

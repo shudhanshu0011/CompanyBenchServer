@@ -50,6 +50,13 @@ const jobSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+jobSchema.set('toJSON', {
+  transform: function (doc, ret, opt) {
+    delete ret['_id']
+    return ret
+  }
+})
+
 const job = mongoose.model("job", jobSchema);
 
 module.exports = job;
