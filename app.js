@@ -8,6 +8,8 @@ const service_config = require('./config/service')
 const logger_helper = require('./helpers/logger');
 const db_connection = require('./helpers/db_connection');
 
+const aws_connection = require('./helpers/awss3');
+
 const app = express();
 // const mongoose = require("mongoose");
 
@@ -15,6 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(db_connection.connect)
+app.use(aws_connection.upload)
 
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')))

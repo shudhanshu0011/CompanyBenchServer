@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
 // 	}
 // }
 router.post("/:guid", async (req, res) => {
-	const tr_guid = req.headers.transaction_guid;
+	const tr_guid = req.headers.transaction_guid ? req.headers.transaction_guid : service_helper.generate_guid;
 	const ref_id = req.headers.service_ref;
 	const candidate_guid = req.params.guid
 	let candidate_json = req.body.candidate
@@ -61,7 +61,8 @@ router.post("/:guid", async (req, res) => {
 
 
 router.get("/", async (req, res) => {
-	const tr_guid = req.headers.transaction_guid;
+	const tr_guid = req.headers.transaction_guid != undefined ? req.headers.transaction_guid : service_helper.generate_guid.toString;
+	console.log("transaction_guid transaction_guid", tr_guid)
 	const ref_id = req.headers.service_ref;
 	candidateModel.find({}).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findAll()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
