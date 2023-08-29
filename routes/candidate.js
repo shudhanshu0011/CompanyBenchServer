@@ -61,10 +61,11 @@ router.post("/:guid", async (req, res) => {
 
 
 router.get("/", async (req, res) => {
+	const tr_guid = req.headers.transaction_guid ? req.headers.transaction_guid : service_helper.generate_guid
 	const ref_id = req.headers.service_ref;
 	//  We have to make it integer because
 	// the query parameter passed is string
-	candidateModel.paginate({}, { offset: 0, limit: 10 }).then(_candidate_find_res => {
+	await candidateModel.paginate({}, { offset: 0, limit: 10 }).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findAll()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
 		res.send(service_helper.success_res(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
 	}).catch(_candidate_find_err => {
@@ -77,7 +78,7 @@ router.get("/status/:statuscd", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
 
-	candidateModel.find({ status: req.params.statuscd }, { offset: 0, limit: 10 }).then(_candidate_find_res => {
+	await candidateModel.find({ status: req.params.statuscd }, { offset: 0, limit: 10 }).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByStatus()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
 		res.send(service_helper.success_res(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
 	}).catch(_candidate_find_err => {
@@ -89,7 +90,7 @@ router.get("/status/:statuscd", async (req, res) => {
 router.get("/technology/:techId", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
-	candidateModel.paginate({
+	await candidateModel.paginate({
 		skill: { "$in": [req.params.techId] }
 	}, { offset: 0, limit: 10 }
 	).then(_candidate_find_res => {
@@ -119,7 +120,7 @@ router.get("/vendor/:vendorId", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
 
-	candidateModel.paginate({ vendorId: req.params.vendorId }, { offset: 0, limit: 10 }).then(_candidate_find_res => {
+	await candidateModel.paginate({ vendorId: req.params.vendorId }, { offset: 0, limit: 10 }).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByvendorId()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
 		res.send(service_helper.success_res(tr_guid, ref_id, { candidate: _candidate_find_res.docs }, _candidate_find_res));
 	}).catch(_candidate_find_err => {

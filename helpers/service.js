@@ -60,6 +60,16 @@ module.exports.success_res = (tr_guid, ref_id, res_data_obj, result) => {
   };
 };
 
+module.exports.success_res = (tr_guid, ref_id, res_data_obj) => {
+  // del_keys(res_data_obj)
+  return {
+    success: true,
+    transaction_guid: tr_guid,
+    service_ref: ref_id,
+    data: res_data_obj
+  };
+};
+
 // Error Response JSON
 module.exports.error_res = (tr_guid, ref_id, error_obj) => {
   logger_helper.error(tr_guid, ref_id, '[Service Helper] error_res()', error_obj.code, error_obj.message);
