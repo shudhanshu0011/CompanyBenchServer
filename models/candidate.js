@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var mongoosePaginate = require('mongoose-paginate');
 
 const service_config = require('../config/service')
 
@@ -65,6 +66,8 @@ candidateSchema.set('toJSON', {
     return ret
   }
 })
+
+candidateSchema.plugin(mongoosePaginate);
 
 const candidate = mongoose.model("candidate", candidateSchema);
 

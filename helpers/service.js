@@ -1,6 +1,7 @@
 const service_config = require('../config/service');
 const error_config = require('../config/error_codes');
 const logger_helper = require('../helpers/logger');
+const { result } = require('lodash');
 
 // generate guid
 module.exports.generate_guid = () => {
@@ -46,13 +47,16 @@ module.exports.unique = (arr) => {
 };
 
 // Success Response JSON
-module.exports.success_res = (tr_guid, ref_id, res_data_obj) => {
+module.exports.success_res = (tr_guid, ref_id, res_data_obj, result) => {
   // del_keys(res_data_obj)
   return {
     success: true,
     transaction_guid: tr_guid,
     service_ref: ref_id,
     data: res_data_obj,
+    total: result.total,
+    limit: result.limit,
+    page: result.offset,
   };
 };
 

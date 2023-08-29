@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+var mongoosePaginate = require('mongoose-paginate');
 const service_config = require('../config/service')
 
 const service_helper = require('../helpers/service')
@@ -56,6 +56,8 @@ jobSchema.set('toJSON', {
     return ret
   }
 })
+
+jobSchema.plugin(mongoosePaginate);
 
 const job = mongoose.model("job", jobSchema);
 
