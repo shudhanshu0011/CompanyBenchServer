@@ -11,8 +11,6 @@ const db_connection = require('./helpers/db_connection');
 const aws_connection = require('./helpers/awss3');
 
 const app = express();
-// const mongoose = require("mongoose");
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -23,7 +21,6 @@ app.use(aws_connection.upload)
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes [Replace by entity name]
-app.use('/v1/customer', require('./routes/customer'));
 
 app.use('/v1/user', require('./routes/user'));
 
