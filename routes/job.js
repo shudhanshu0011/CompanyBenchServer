@@ -83,7 +83,7 @@ router.get("/", async (req, res) => {
 	const { page = 2, limit = 10 } = req.query;
 	jobModel.paginate({}, { offset: 0, limit: 10 }).then(_job_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[job Controller] findAll()', '_job_find_res :: ' + JSON.stringify(_job_find_res))
-		res.send(service_helper.success_res(tr_guid, ref_id, { jobs: _job_find_res.docs }, _job_find_res));
+		res.send(service_helper.success_res_page(tr_guid, ref_id, { jobs: _job_find_res.docs }, _job_find_res));
 	}).catch(_job_find_err => {
 		LOGGER.error(tr_guid, ref_id, '[job Controller] findAll() error', error_config.job.read_all_failed.code, _job_find_err)
 		res.send(service_helper.error_res(tr_guid, ref_id, error_config.job.read_all_failed));

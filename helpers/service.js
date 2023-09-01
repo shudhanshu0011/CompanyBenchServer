@@ -47,8 +47,7 @@ module.exports.unique = (arr) => {
 };
 
 // Success Response JSON
-module.exports.success_res = (tr_guid, ref_id, res_data_obj, result) => {
-  // del_keys(res_data_obj)
+module.exports.success_res_page = (tr_guid, ref_id, res_data_obj, result) => {
   return {
     success: true,
     transaction_guid: tr_guid,

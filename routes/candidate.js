@@ -67,7 +67,7 @@ router.get("/", async (req, res) => {
 	// the query parameter passed is string
 	await candidateModel.paginate({}, { offset: 0, limit: 10 }).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findAll()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
-		res.send(service_helper.success_res(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
+		res.send(service_helper.success_res_page(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
 	}).catch(_candidate_find_err => {
 		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findAll()', error_config.candidate.read_all_failed.code, _candidate_find_err)
 		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_all_failed));
@@ -80,7 +80,7 @@ router.get("/status/:statuscd", async (req, res) => {
 
 	await candidateModel.find({ status: req.params.statuscd }, { offset: 0, limit: 10 }).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByStatus()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
-		res.send(service_helper.success_res(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
+		res.send(service_helper.success_res_page(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
 	}).catch(_candidate_find_err => {
 		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findByStatus()', error_config.candidate.read_all_failed.code, _candidate_find_err)
 		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_all_failed));
@@ -95,7 +95,7 @@ router.get("/technology/:techId", async (req, res) => {
 	}, { offset: 0, limit: 10 }
 	).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findBytechId()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
-		res.send(service_helper.success_res(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
+		res.send(service_helper.success_res_page(tr_guid, ref_id, { candidates: _candidate_find_res.docs }, _candidate_find_res));
 	}).catch(_candidate_find_err => {
 		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findBytechId()', error_config.candidate.read_all_failed.code, _candidate_find_err)
 		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_all_failed));
@@ -122,7 +122,7 @@ router.get("/vendor/:vendorId", async (req, res) => {
 
 	await candidateModel.paginate({ vendorId: req.params.vendorId }, { offset: 0, limit: 10 }).then(_candidate_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[candidate Controller] findByvendorId()', '_candidate_find_res :: ' + JSON.stringify(_candidate_find_res))
-		res.send(service_helper.success_res(tr_guid, ref_id, { candidate: _candidate_find_res.docs }, _candidate_find_res));
+		res.send(service_helper.success_res_page(tr_guid, ref_id, { candidate: _candidate_find_res.docs }, _candidate_find_res));
 	}).catch(_candidate_find_err => {
 		LOGGER.error(tr_guid, ref_id, '[candidate Controller] findByvendorId()', error_config.candidate.read_failed.code, _candidate_find_err)
 		res.send(service_helper.error_res(tr_guid, ref_id, error_config.candidate.read_failed));
