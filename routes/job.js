@@ -33,12 +33,6 @@ router.post("/", async (req, res) => {
 	})
 });
 
-// -- Update existing job by Guid
-// Request JSON
-// {
-// 	job:{
-// 	}
-// }
 router.post("/:guid", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
@@ -58,30 +52,13 @@ router.post("/:guid", async (req, res) => {
 	})
 });
 
-// -- Fetch all existing job(s)
-// JSON Response
-// {
-//     "success": true,
-//     "transaction_guid": "c5268dce-ec9e-487b-93ef-776c470014b4",
-//     "service_ref": "ac-970ce9a8",
-//     "data": {
-//         "jobs": [
-//             {
-//                 "_id": "638051314e60f00e020c5e45",
-//                 "guid": "1d39b4d0-0446-4f9d-a905-8de9363a2f01",
-//                 "createdAt": "2022-11-25T05:22:57.694Z",
-//                 "updatedAt": "2022-11-25T05:22:57.694Z",
-//                 "__v": 0
-//             },
-// 						...
-//         ]
-//     }
-// }
+
 router.get("/", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
-	const { page = 2, limit = 10 } = req.query;
-	jobModel.paginate({}, { offset: 0, limit: 10 }).then(_job_find_res => {
+	const { offset = 0, limit = 10 } = req.query;
+	console.log("offset and limits are ", offset, limit);
+	jobModel.paginate({}, { offset: offset * limit, limit: limit }).then(_job_find_res => {
 		LOGGER.log(tr_guid, ref_id, '[job Controller] findAll()', '_job_find_res :: ' + JSON.stringify(_job_find_res))
 		res.send(service_helper.success_res_page(tr_guid, ref_id, { jobs: _job_find_res.docs }, _job_find_res));
 	}).catch(_job_find_err => {
@@ -103,22 +80,7 @@ router.get("/status/:statuscd", async (req, res) => {
 	})
 });
 
-// -- Fetch existing job by Guid
-// JSON Response
-// {
-//     "success": true,
-//     "transaction_guid": "c5268dce-ec9e-487b-93ef-776c470014b4",
-//     "service_ref": "ac-970ce9a8",
-//     "data": {
-//         "job": {
-//             "_id": "638051314e60f00e020c5e45",
-//             "guid": "1d39b4d0-0446-4f9d-a905-8de9363a2f01",
-//             "createdAt": "2022-11-25T05:22:57.694Z",
-//             "updatedAt": "2022-11-25T05:22:57.694Z",
-//             "__v": 0
-//         }
-//     }
-// }
+
 router.get("/:guid", async (req, res) => {
 	const tr_guid = req.headers.transaction_guid;
 	const ref_id = req.headers.service_ref;
