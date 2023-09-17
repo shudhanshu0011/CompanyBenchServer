@@ -61,6 +61,15 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+userSchema.set('toJSON', {
+  transform: function (doc, ret, opt) {
+    delete ret['hash']
+    delete ret['salt']
+    return ret
+  }
+})
+
+
 const user = mongoose.model("user", userSchema);
 
 module.exports = user;

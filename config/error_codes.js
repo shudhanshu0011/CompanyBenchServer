@@ -21,6 +21,7 @@ module.exports = {
     update_failed: { code: 'CB-user-002', message: 'Failed to Update user' },
     read_all_failed: { code: 'CB-user-003', message: 'Failed fetch user(s)' },
     read_failed: { code: 'CB-user-004', message: 'Failed fetch user' },
+    logout_failed: { code: 'CB-user-005', message: 'Failed to logout user' },
   },
 
   /* The `job` property is defining an object within the `module.exports` object. This object

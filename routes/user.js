@@ -6,6 +6,8 @@ const LOGGER = require("../helpers/logger");
 const userModel = require("../models/user");
 const passport = require("passport");
 const genPassword = require("../helpers/passwordUtils").genPassword;
+const isAuth = require("../middlewares/authMiddleware").isAuth;
+const isAdmin = require("../middlewares/authMiddleware").isAdmin;
 
 // -- Create new user
 // Request JSON
@@ -55,7 +57,7 @@ router.post("/", async (req, res) => {
       );
       res.send(
         service_helper.success_res(tr_guid, ref_id, {
-          user: _user_json_save_res,
+          message: "User successfully saved",
         })
       );
     })
@@ -80,7 +82,23 @@ router.post("/", async (req, res) => {
 // Login user
 router.post("/login", passport.authenticate("local"));
 
-// -- Update existing user by Guid
+// Logout user
+router.get("/logout", isAuth, (req, res, next) => {
+  const tr_guid = req.headers.transaction_guid;
+  const ref_id = req.headers.service_ref;
+  req.logout((err) => {
+      if (err) {
+        res.send(
+          service_helper.error_res(tr_guid, ref_id, error_config.user.logout_failed)
+        )
+      }
+      res.send(
+        service_helper.success_res(tr_guid, ref_id, { msg: "Successfully logged out" })
+      );
+  });
+});
+
+// TODO: Update existing user by Guid
 // Request JSON
 // {
 // 	user:{
@@ -128,17 +146,17 @@ router.post("/:guid", async (req, res) => {
 });
 
 // -- Fetch user from session
-router.get("/", async (req, res) => {
+router.get("/", isAuth, async (req, res) => {
   const tr_guid = req.headers.transaction_guid;
   const ref_id = req.headers.service_ref;
 
   userModel
-    .find({})
+    .find({ email: req.user.email })
     .then((_user_find_res) => {
       LOGGER.log(
         tr_guid,
         ref_id,
-        "[user Controller] findAll()",
+        "[user Controller] findUser()",
         "_user_find_res :: " + JSON.stringify(_user_find_res)
       );
       res.send(
@@ -149,21 +167,17 @@ router.get("/", async (req, res) => {
       LOGGER.error(
         tr_guid,
         ref_id,
-        "[user Controller] findAll()",
-        error_config.user.read_all_failed.code,
+        "[user Controller] findUser()",
+        error_config.user.read_failed.code,
         _user_find_err
       );
       res.send(
-        service_helper.error_res(
-          tr_guid,
-          ref_id,
-          error_config.user.read_all_failed
-        )
+        service_helper.error_res(tr_guid, ref_id, error_config.user.read_failed)
       );
     });
 });
 
-router.get("/status/:statuscd", async (req, res) => {
+router.get("/status/:statuscd", isAdmin, async (req, res) => {
   const tr_guid = req.headers.transaction_guid;
   const ref_id = req.headers.service_ref;
 
@@ -214,7 +228,7 @@ router.get("/status/:statuscd", async (req, res) => {
 //         }
 //     }
 // }
-router.get("/:guid", async (req, res) => {
+router.get("/:guid", isAdmin, async (req, res) => {
   const tr_guid = req.headers.transaction_guid;
   const ref_id = req.headers.service_ref;
 
