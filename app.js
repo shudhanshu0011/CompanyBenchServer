@@ -72,7 +72,7 @@ app.use("/v1/technology", require("./routes/technology"));
 
 app.use("/v1/candidate", require("./routes/candidate"));
 
-app.use("/v1/companies", require("./routes/companyList"));
+app.use("/v1/companies", require("./routes/companylist"));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public" + req.url));
