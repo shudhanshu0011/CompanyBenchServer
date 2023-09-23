@@ -10,25 +10,25 @@ module.exports.isAuth = (req, res, next) => {
 
 module.exports.isClient = (req, res, next) => {
   let role = "CLIENT";
-  checkIfUserIsAuthAndHasRole(role);
+  checkIfUserIsAuthAndHasRole(role, req, res, next);
 };
 
 module.exports.isIndividual = (req, res, next) => {
   let role = "INDIVIDUAL";
-  checkIfUserIsAuthAndHasRole(role);
+  checkIfUserIsAuthAndHasRole(role, req, res, next);
 };
 
 module.exports.isVendor = (req, res, next) => {
   let role = "VENDOR";
-  checkIfUserIsAuthAndHasRole(role);
+  checkIfUserIsAuthAndHasRole(role, req, res, next);
 };
 
 module.exports.isAdmin = (req, res, next) => {
   let role = "ADMIIN";
-  checkIfUserIsAuthAndHasRole(role);
+  checkIfUserIsAuthAndHasRole(role, req, res, next);
 };
 
-function checkIfUserIsAuthAndHasRole(role) {
+function checkIfUserIsAuthAndHasRole(role, req, res, next) {
   if (req.isAuthenticated() && req.user.userType === role) {
     next();
   } else {

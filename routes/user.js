@@ -83,7 +83,7 @@ router.post("/", async (req, res) => {
 router.post("/login", passport.authenticate("local"));
 
 // Logout user
-router.get("/logout", isAuth, (req, res, next) => {
+router.get("/logout", isAuth, (req, res) => {
   const tr_guid = req.headers.transaction_guid;
   const ref_id = req.headers.service_ref;
   req.logout((err) => {
