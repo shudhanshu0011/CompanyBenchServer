@@ -23,4 +23,10 @@ module.exports = {
 
   // session secrets
   session_secret: "kjabdkfbkdbeudcbdq352twrt56435235r2543fr",
+
+  // cors urls
+  cors_whitelist: [
+    "http://localhost:8080",
+    "https://cb-react-web-app-2d5k-8puxuo3xy-techforchange.vercel.app",
+  ],
 };

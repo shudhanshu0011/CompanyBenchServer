@@ -12,17 +12,18 @@ const mongoose = require("mongoose");
 
 //  Express App setup
 const app = express();
-// TODO: Populate from service config
-const whitelist = ['http://localhost:8080', 'https://cb-react-web-app-2d5k-8puxuo3xy-techforchange.vercel.app'];
+const whitelist = service_config.cors_whitelist;
 const corsOptions = {
-  credentials: true, // This is important.
+  credentials: true,
   origin: (origin, callback) => {
-    if(whitelist.includes(origin))
-      return callback(null, true)
-
-      callback(new Error('Not allowed by CORS'));
-  }
-}
+    if (origin === undefined) {
+      // for postman
+      return callback(null, true);
+    }
+    if (whitelist.includes(origin)) return callback(null, true);
+    callback(new Error("Not allowed by CORS"));
+  },
+};
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
