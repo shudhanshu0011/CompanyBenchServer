@@ -72,5 +72,11 @@ module.exports = {
     update_failed: { code: 'TIQ-companyList-002', message: 'Failed to Update companyList' },
     read_all_failed: { code: 'TIQ-companyList-003', message: 'Failed fetch companyList(s)' },
     read_failed: { code: 'TIQ-companyList-004', message: 'Failed fetch companyList' },
-  }
+  },
+  contactus: {
+    create_failed: { code: 'TIQ-contactus-001', message: 'Failed to Save New contactus' },
+    update_failed: { code: 'TIQ-contactus-002', message: 'Failed to Update contactus' },
+    read_all_failed: { code: 'TIQ-contactus-003', message: 'Failed fetch contactus(s)' },
+    read_failed: { code: 'TIQ-contactus-004', message: 'Failed fetch contactus' },
+  },
 };

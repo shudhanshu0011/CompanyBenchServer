@@ -85,6 +85,8 @@ app.use("/v1/candidate", require("./routes/candidate"));
 
 app.use("/v1/companies", require("./routes/companylist"));
 
+app.use("/v1/contact", require("./routes/contactus"));
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public" + req.url));
 });
