@@ -13,7 +13,7 @@ const mongoose = require("mongoose");
 //  Express App setup
 const app = express();
 // TODO: Populate from service config
-const whitelist = ['http://localhost:8080', 'http://example2.com'];
+const whitelist = ['http://localhost:8080', 'https://cb-react-web-app-2d5k-8puxuo3xy-techforchange.vercel.app'];
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
