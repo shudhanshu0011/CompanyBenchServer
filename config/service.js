@@ -27,6 +27,6 @@ module.exports = {
   // cors urls
   cors_whitelist: [
     "http://localhost:8080",
-    "https://cb-react-web-app-2d5k-8puxuo3xy-techforchange.vercel.app",
+    "https://cb-react-web-app-2d5k-git-develop-techforchange.vercel.app"
   ],
 };
