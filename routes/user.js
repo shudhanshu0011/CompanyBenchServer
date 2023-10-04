@@ -80,7 +80,9 @@ router.post("/", async (req, res) => {
 });
 
 // Login user
-router.post("/login", passport.authenticate("local"));
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  res.sendStatus(200);
+});
 
 // Logout user
 router.get("/logout", isAuth, (req, res) => {
